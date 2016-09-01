@@ -12,6 +12,5 @@
 
 @interface ViewController : UIViewController
 
-@property (strong, nonatomic) Deck * deck;
 
 @end

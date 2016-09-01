@@ -42,13 +42,40 @@
   return _chosen;
 }
 
+- (NSUInteger)numOfCardsDrawn{
+  NSUInteger counter = 0;
+
+  for(Card *card in self.cards){
+    if(!card.isMatched){
+      counter++;
+    }
+  }
+
+  return counter;
+
+}
+
+-(Card *)drawACard{
+  Card *card = [self.deck drawRandomCard];
+
+  [self.cards addObject:card];
+
+  return card;
+}
+
+-(void)setDeck:(Deck *)deck{
+  if(!_deck){
+    _deck = deck;
+  }
+}
+
 - (instancetype)initWithCardCount:(NSUInteger)count usingDeck:(Deck *)deck{
 
   self = [super init];
-
+  self.deck = deck;
   if(self){
     for(NSInteger i = 0 ; i < count; i++){
-      Card *card = [deck drawRandomCard];
+      Card *card = [self.deck drawRandomCard];
       if(card){
         self.cards[i] = card;
         continue;

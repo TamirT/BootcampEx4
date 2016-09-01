@@ -15,6 +15,7 @@
 - (instancetype)initWithCardCount:(NSUInteger)count usingDeck:(Deck *)deck;
 - (Card *)cardAtIndex:(NSUInteger)index;
 - (void)chooseCardAtIndex:(NSUInteger)index type:(NSInteger)gameType;
+- (NSUInteger)numOfCardsDrawn;
 
 typedef enum{
     NEW_GAME,
@@ -27,6 +28,7 @@ typedef enum{
 
 @property(nonatomic,readonly) NSInteger score;
 @property (nonatomic, readwrite) NSInteger roundScore;
+@property(nonatomic, strong) Deck *deck;
 @property (nonatomic) GameState state;
 @property (nonatomic, strong) NSMutableArray *lastHand;
 

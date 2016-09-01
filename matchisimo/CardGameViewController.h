@@ -16,7 +16,7 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *typeFlicker;
 @property (nonatomic) NSInteger gameType;
 @property (strong, nonatomic) NSMutableAttributedString *history;
-
+@property (strong, nonatomic) Deck * deck;
 
 -(void)saveMsgHistory;
 -(void)handleMsgBox;

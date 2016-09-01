@@ -17,18 +17,6 @@
 @implementation ViewController
 
 
-- (Deck *) createDeck{
-    return nil;
-}
-
-- (Deck *) deck{
-    if(!_deck){
-     _deck = [self createDeck];   
-    }
-    return _deck;
-}
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
