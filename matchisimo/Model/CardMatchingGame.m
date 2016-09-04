@@ -8,7 +8,7 @@
 #import "CardMatchingGame.h"
 #define MATCH_BONUS 5;
 #define MISMATCH_PENALTY 20;
-#define COST_TO_CHOOSE 1;
+#define COST_TO_CHOOSE 5;
 
 @interface CardMatchingGame()
 @property (nonatomic, readwrite) NSInteger score;
@@ -53,6 +53,10 @@
 
   return counter;
 
+}
+
+- (NSUInteger)numOfCardsLeft{
+  return [self.deck cardsLeft];
 }
 
 -(Card *)drawACard{
@@ -111,7 +115,7 @@
 
   // get currently clicked card
   Card *card = [self cardAtIndex:index];
-
+  self.roundScore = - COST_TO_CHOOSE;
   // check if card is unmatched and unchosen to start logic
   if(!card.isMatched){
     if(card.isChosen){

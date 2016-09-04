@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "CardView.h"
 
 @interface CardGameViewController : ViewController
 @property (nonatomic, strong) CardMatchingGame *game;
@@ -17,9 +18,11 @@
 @property (nonatomic) NSInteger gameType;
 @property (strong, nonatomic) NSMutableAttributedString *history;
 @property (strong, nonatomic) Deck * deck;
+@property (strong, nonatomic)NSMutableArray *cardViews;
 
--(void)saveMsgHistory;
--(void)handleMsgBox;
 -(void)updateUI;
 - (NSMutableAttributedString *)titleForCard:(Card *)card;
+- (CGRect)calculateDeckFrame;
+- (CardView *)addCard:(Card *)card;
+- (NSUInteger)initialCardsCount;
 @end

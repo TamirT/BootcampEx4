@@ -15,4 +15,6 @@
 
 - (Card *)drawRandomCard;
 
+@property (nonatomic)NSUInteger cardsLeft;
+
 @end

@@ -10,21 +10,29 @@
 #import "Grid.h"
 #import "PlayingCardView.h"
 #import "Card.h"
+#import "CardView.h"
 
-#define INITIAL_CARD_COUNT 54
-#define MAX_CELL_HEIGHT 70
+#define MAX_CELL_HEIGHT 60
+#define GAME_TYPE 3
 
 @interface CardGameViewController ()
-@property (strong, nonatomic)UIDynamicAnimator *animator;
 @property (strong, nonatomic)IBOutlet UIView *gameView;
 @property (strong, nonatomic)NSMutableArray *freeCardSlots;
-@property (strong, nonatomic)NSMutableArray *playingCardViews;
 @property (nonatomic) BOOL gameInitialized;
 @property (strong, nonatomic) Grid *grid;
 @property (nonatomic) CGSize currentCardSize;
+@property (strong, nonatomic)CardView *deckCardView;
+@property (strong, nonatomic)NSTimer* timer;
+@property (strong, nonatomic)UITapGestureRecognizer *tapGestureRecognizer;
+
 @end
 
 @implementation CardGameViewController
+
+
+- (NSUInteger)initialCardsCount{
+  return 0;
+}
 
 -(NSMutableArray *)freeCardSlots{
   if(!_freeCardSlots){
@@ -42,21 +50,15 @@
   return _freeCardSlots;
 }
 
--(NSMutableArray *)playingCardViews{
-  if(!_playingCardViews){
-    _playingCardViews = [[NSMutableArray alloc] init];
-    NSUInteger cardsCount = [self.game numOfCardsDrawn];
-    for(NSUInteger i = 0 ; i < cardsCount; i++){
-      Card *card = [self.game cardAtIndex:i];
-      if(!card.isMatched){
-        [self addPlayingCard:card];
-      }
-    }
-
+-(NSMutableArray *)cardViews{
+  if(!_cardViews){
+    _cardViews = [[NSMutableArray alloc] init];
   }
-  return _playingCardViews;
+  return _cardViews;
 }
 
+
+// Returns a CGPoint in the grid to plot the next card
 -(CGPoint)nextFreeSlotCenter{
 
   NSUInteger slotCount = [self.freeCardSlots count];
@@ -71,6 +73,8 @@
   return CGPointMake(-1, -1);
 }
 
+// Turns an index in the cardView array to an
+// CGPoint in the grid, representing the card's location.
 -(CGPoint)indexToPointInGrid:(NSUInteger)index{
 
   NSUInteger x = index % self.grid.columnCount;
@@ -79,10 +83,12 @@
   return CGPointMake(x, y);
 }
 
--(void)fixCardViewPosition: (PlayingCardView * )cardView{
+// Gets the correct grid point position for a card view.
+-(void)fixCardViewPosition: (CardView * )cardView{
   // check if playing card view already attached to game view
-  if([self.playingCardViews containsObject:cardView]){
-    NSUInteger cardViewIndex = [self.playingCardViews indexOfObject:cardView];
+
+  if([self.cardViews containsObject:cardView]){
+    NSUInteger cardViewIndex = [self.cardViews indexOfObject:cardView];
     CGPoint pointInGrid = [self indexToPointInGrid:cardViewIndex];
     cardView.frame = [self.grid frameOfCellAtRow:(NSUInteger)pointInGrid.y inColumn:(NSUInteger)pointInGrid.x];
     return;
@@ -105,24 +111,6 @@
 
 }
 
-
--(void)occupySlot:(NSUInteger)x :(NSUInteger)y{
-
-  NSUInteger width = self.grid.size.width;
-  if( self.grid.size.height < y || self.grid.size.width < x ){
-    self.freeCardSlots[y * width + x] = @NO;
-  }
-
-}
-
-- (UIDynamicAnimator *)animator{
-  if(!_animator){
-    _animator = [[UIDynamicAnimator alloc] initWithReferenceView:self.gameView];
-  }
-
-  return _animator;
-}
-
 - (Deck *) createDeck{
   return nil;
 }
@@ -143,20 +131,10 @@
     _grid.maxCellHeight = MAX_CELL_HEIGHT;
     _grid.size = self.gameView.frame.size;
     _grid.minimumNumberOfCells = 5;
-    NSLog([NSString stringWithFormat:@"Grid Adjusted Row : %d , Col : %d",
-           _grid.rowCount,_grid.columnCount]);
   }
 
   return _grid;
 }
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-
-  HistoryViewController *destView = segue.destinationViewController;
-  [destView.historyLogger appendAttributedString:self.history];
-
-}
-
 - (void)viewDidLoad {
   [super viewDidLoad];
   NSLog(@"IN VIEW DID LOAD");
@@ -168,16 +146,15 @@
 - (void)viewDidLayoutSubviews {
   NSLog(@"in view did layoutSubview");
   self.grid = nil;
-
+  [self.deckCardView removeFromSuperview];
+  self.deckCardView = nil;
+  [self deckCardView];
   if(!self.gameInitialized){
-    [self dealCardsFromDeck];
+    [self initialDealCardsFromDeck];
     self.gameInitialized = YES;
   }
 
   [self fixCardsLocations];
-  //  NSLog(@"%d", [[self.gameView subviews] count]);
-  //  NSLog(@"%d", [self.playingCardViews count]);
-  // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {
@@ -187,8 +164,8 @@
 
 - (CardMatchingGame *)game{
   if(!_game){
-    _game = [[CardMatchingGame alloc] initWithCardCount:INITIAL_CARD_COUNT
-                                              usingDeck:self.deck];
+    _game = [[CardMatchingGame alloc] init];
+    [_game setDeck:self.deck];
   }
 
   return _game;
@@ -209,102 +186,42 @@
   return nil;
 }
 
-- (IBAction)touchCardButton:(UIButton *)sender {
-  NSInteger cardIndex = [self.cardButtons indexOfObject:sender];
-  [self.game chooseCardAtIndex:cardIndex type:self.gameType];
-  [self updateUI];
-}
-
-- (void)saveMsgHistory{
-  if(self.game.state == CARD_CHOSEN){
-    return;
-  }
-  [self.history appendAttributedString:self.msgBox.attributedText];
-  [self.history appendAttributedString:[[NSMutableAttributedString alloc] initWithString:@". "]];
-  [self.history appendAttributedString:self.scoreLabel.attributedText];
-  [self.history appendAttributedString:[[NSMutableAttributedString alloc] initWithString:@"\r\r"]];
-}
-
 - (UIImage *)backgroundImageForCard:(Card *)card{
   return nil;
-}
-
--(void)updateUI{
-  for(UIButton *cardButton in self.cardButtons){
-    NSInteger cardIndex = [self.cardButtons indexOfObject:cardButton];
-    Card *card = [self.game cardAtIndex:cardIndex];
-    [cardButton setAttributedTitle:[self titleForCard:card] forState:UIControlStateNormal];
-    [cardButton setBackgroundImage: [self backgroundImageForCard:card]
-                          forState:UIControlStateNormal];
-    cardButton.enabled = !card.isMatched;
-  }
-  self.scoreLabel.text = [NSString stringWithFormat:@"Score: %ld", (long)self.game.score];
-
-  //  [self handleMsgBox];
-  //  [self saveMsgHistory];
 }
 
 -(NSMutableAttributedString *)getCardsAsString{
   return nil;
 }
 
-- (void)handleMsgBox{
-  GameState state = self.game.state;
-  NSString * roundScore = [NSString stringWithFormat:@"%ld", (long)self.game.roundScore];
-  NSMutableAttributedString *str = [[NSMutableAttributedString alloc] init];
-  switch (state) {
-    case PENALTY:
-      [str appendAttributedString:[self getCardsAsString]];
-      [str appendAttributedString:[[NSMutableAttributedString alloc]
-                                   initWithString:@" do not match! Penality: "]];
-      [str appendAttributedString:[[NSMutableAttributedString alloc] initWithString:roundScore]];
-      self.msgBox.attributedText = str;
-      break;
-    case MATCH:
-      [str appendAttributedString:[self getCardsAsString]];
-      [str appendAttributedString:[[NSMutableAttributedString alloc]
-                                   initWithString:@" match!  Round Score: "]];
-      [str appendAttributedString:[[NSMutableAttributedString alloc] initWithString:roundScore]];
-      self.msgBox.attributedText = str;
-      break;
-    case CARD_CHOSEN:
-      [str appendAttributedString:[[NSMutableAttributedString alloc]
-                                   initWithString:@"Choose Another Card"]];
-      self.msgBox.attributedText = str;
-      break;
-    case GAME_END:
-      [str appendAttributedString:[[NSMutableAttributedString alloc]
-                                   initWithString:@"Game finished! reset to play again"]];
-      self.msgBox.attributedText = str;
-      break;
-    case NEW_GAME:
-    default:
-      [str appendAttributedString:[[NSMutableAttributedString alloc]
-                                   initWithString:@"Start Game!"]];
-      self.msgBox.attributedText = str;
-      break;
-  }
-}
-
 - (IBAction)reset:(id)sender {
   self.game = nil;
   self.deck = nil;
-  self.scoreLabel.text = @"Score : 0";
-  [self fixCardsLocations];
-  [self updateUI];
-}
+  self.freeCardSlots = nil;
+  self.gameInitialized = NO;
+  self.grid = nil;
+  self.deckCardView = nil;
 
+  for(CardView *card in self.cardViews){
+    [card removeFromSuperview];
+  }
+  self.scoreLabel.text = @"Score : 0";
+
+  self.cardViews = nil;
+  [self viewDidLayoutSubviews];
+
+
+}
 - (IBAction)gameTypeChanged:(id)sender {
   [self reset:sender];
 }
 
-- (PlayingCardView *)addPlayingCard:(Card *)card{
-  PlayingCardView *cardView = [[PlayingCardView alloc] init];
-  cardView.frame = [self calculateDeckFrame];
-  [cardView setCardView:card];
+- (void)tap:(UITapGestureRecognizer *)gesture{
+  // implement in inheriting class
+}
 
-  [self.playingCardViews addObject:cardView];
-  return cardView;
+-(void)updateUI{
+  // implement in inherting class
 }
 
 - (CGRect)calculateDeckFrame{
@@ -316,38 +233,95 @@
 }
 
 - (void)fixCardsLocations{
-  NSUInteger cardCounter = [self.playingCardViews count];
+  NSUInteger cardCounter = [self.cardViews count];
   for(NSUInteger i = 0 ; i < cardCounter; i++){
-    [self fixCardViewPosition:self.playingCardViews[i]];
+    [self fixCardViewPosition:self.cardViews[i]];
   }
 
 }
 
-- (void)setup{
+-(void)dealCardFromDeck:(UITapGestureRecognizer *)recognizer{
 
-  // create pile
-  //  CGPoint cardPoint =  [self.grid centerOfCellAtRow:2 inColumn:2];
+  // if initial card count met, stop dealing timer
 
-  //dealNewCards
 
-}
-
--(void)dealCardsFromDeck{
-
-  for(PlayingCardView *card in self.playingCardViews){
-    NSUInteger cardViewIndex = [self.playingCardViews indexOfObject:card];
-    CGPoint pointInGrid = [self indexToPointInGrid:cardViewIndex];
-    [self.gameView addSubview:card];
-    card.positionInGrid = pointInGrid;
-    [UIView animateWithDuration:1.0
-                     animations:^{
-                       NSUInteger x = card.positionInGrid.x;
-                       NSUInteger y = card.positionInGrid.y;
-                       card.center = [self.grid centerOfCellAtRow:y inColumn:x];
-                     }];
-//    [NSThread sleepForTimeInterval:1.0f];
+  if ([self.deck cardsLeft] == 1){
+    [self.deckCardView removeFromSuperview];
   }
+
+  // add + animate addition of new card
+  Card *card = [self.game drawACard];
+
+  NSUInteger cardsDrawn = [self.game numOfCardsDrawn];
+  NSUInteger cardsLeft = [self.game numOfCardsLeft];
+
+  CardView *cardView = [self addCard:card];
+  NSUInteger cardViewIndex = [self.cardViews indexOfObject:cardView];
+  CGPoint pointInGrid = [self indexToPointInGrid:cardViewIndex];
+  [self.gameView addSubview:cardView];
+  cardView.positionInGrid = pointInGrid;
+
+  [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut
+                   animations:^{
+                     NSUInteger x = cardView.positionInGrid.x;
+                     NSUInteger y = cardView.positionInGrid.y;
+                     cardView.center = [self.grid centerOfCellAtRow:y inColumn:x];
+                     if(cardsDrawn == [self initialCardsCount] || cardsLeft == 0){
+                       [self.timer invalidate];
+                       self.timer = nil;
+                     }
+                   }
+                   completion:^(BOOL finished){}
+   ];
 }
 
+- (CardView *)createNewCardView{
+
+  return nil;
+}
+
+- (CardView *)addCard:(Card *)card{
+  CardView *cardView = [self createNewCardView];
+  cardView.frame = [self calculateDeckFrame];
+  [cardView setCardView:card];
+
+  UITapGestureRecognizer *tapGestureRecognizer =
+  [[UITapGestureRecognizer alloc] initWithTarget:self
+                                          action:@selector(tap:)];
+  [cardView addGestureRecognizer:tapGestureRecognizer];
+
+  [self.cardViews addObject:cardView];
+  return cardView;
+}
+
+-(void)initialDealCardsFromDeck{
+
+  if([self initialCardsCount] == 0){
+    return;
+  }
+
+  self.timer = [NSTimer scheduledTimerWithTimeInterval:0.05f
+                                                target:self selector:@selector(dealCardFromDeck:)
+                                              userInfo:nil repeats:YES];
+}
+
+-(CardView *)deckCardView{
+
+  if(!_deckCardView){
+    if([self.deck cardsLeft] == 0){
+      return nil;
+    }
+    _deckCardView = [[PlayingCardView alloc] init];
+    _deckCardView.frame = [self calculateDeckFrame];
+    [self.gameView addSubview:_deckCardView];
+    UITapGestureRecognizer *tap =
+    [[UITapGestureRecognizer alloc] initWithTarget:self
+                                            action:@selector(dealCardFromDeck:)];
+    [_deckCardView addGestureRecognizer:tap];
+
+  }
+  
+  return _deckCardView;
+}
 
 @end

@@ -38,6 +38,8 @@
   }
 }
 
+
+
 + (NSUInteger)maxRank {
   return [[self rankStrings] count] - 1;
 }

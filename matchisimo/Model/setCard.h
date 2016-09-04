@@ -13,7 +13,7 @@
 @interface SetCard : Card
 
 @property (strong, nonatomic) NSString *shape;
-@property (nonatomic) NSInteger number;
+@property (nonatomic) NSUInteger number;
 @property (strong, nonatomic) NSString *color;
 @property (strong, nonatomic) NSString *shade;
 

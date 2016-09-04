@@ -14,8 +14,10 @@
 
 - (instancetype)initWithCardCount:(NSUInteger)count usingDeck:(Deck *)deck;
 - (Card *)cardAtIndex:(NSUInteger)index;
+- (Card *)drawACard;
 - (void)chooseCardAtIndex:(NSUInteger)index type:(NSInteger)gameType;
 - (NSUInteger)numOfCardsDrawn;
+- (NSUInteger)numOfCardsLeft;
 
 typedef enum{
     NEW_GAME,

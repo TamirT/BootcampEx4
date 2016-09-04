@@ -9,7 +9,9 @@
 #import "SetGameViewController.h"
 #import "SetCardDeck.h"
 #import "SetCard.h"
+#import "SetCardView.h"
 
+#define INITIAL_CARD_COUNT 12
 
 @interface SetGameViewController ()
 
@@ -17,7 +19,9 @@
 
 @implementation SetGameViewController
 
-
+- (NSUInteger)initialCardsCount{
+  return INITIAL_CARD_COUNT;
+}
 
 - (void)viewDidLoad {
   [super viewDidLoad];
@@ -48,6 +52,26 @@
   
 }
 
+-(void)updateUI{
+
+  NSUInteger cardsNumber = [self.cardViews count];
+  for(NSUInteger i = 0 ; i <  cardsNumber ; i++){
+    SetCardView *cardView = self.cardViews[i];
+    Card *card = [self.game cardAtIndex:i];
+    if(card.isMatched){
+      cardView.userInteractionEnabled = NO;
+      cardView.alpha = 0.5;
+    }else{
+      cardView.chosen = card.isChosen;
+    }
+
+
+  }
+  self.scoreLabel.text = [NSString stringWithFormat:@"Score: %ld", (long)self.game.score];
+  
+}
+
+
 - (NSShadow *)getShadow:(NSString *)str{
   NSShadow *shadow = [[NSShadow alloc] init];
   shadow.shadowOffset = CGSizeMake(1.0, 1.0);
@@ -61,6 +85,11 @@
   }
   return shadow;
   
+}
+
+- (CardView *)createNewCardView{
+
+  return [[SetCardView alloc] init];
 }
 
 -(NSMutableAttributedString *)getCardsAsString{

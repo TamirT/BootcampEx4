@@ -48,7 +48,7 @@ static const NSInteger maxNumberOfShapes = 3;
   }
 }
 
-- (void)setNumber:(NSInteger)number{
+- (void)setNumber:(NSUInteger)number{
   if(number <= maxNumberOfShapes){
     _number = number;
   }
@@ -98,7 +98,7 @@ static const NSInteger maxNumberOfShapes = 3;
   // check if chosen cards are set
   if((sameNumber || diffNumber) && (sameShape || diffShape) && (sameColor || diffColor ) &&
         (sameShading || diffShading)){
-    score = score +  MATCH_BONUS + MISMATCH_PENALTY;
+    score +=  MATCH_BONUS + MISMATCH_PENALTY;
   }
 
   return score;

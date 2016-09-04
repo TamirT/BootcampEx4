@@ -1,21 +1,18 @@
 //
-//  CardProtocol.h
+//  CardView.h
 //  matchisimo
 //
-//  Created by Tamir Tiomkin on 31/08/2016.
+//  Created by Tamir Tiomkin on 04/09/2016.
 //  Copyright © 2016 Lightricks. All rights reserved.
 //
 
-#ifndef CardProtocol_h
-#define CardProtocol_h
+#import <UIKit/UIKit.h>
 #import "Card.h"
 
-@protocol CardViewProtocol : UIView
+@interface CardView : UIView
 
 -(void)setCardView:(Card *)card;
 
 @property (nonatomic)CGPoint positionInGrid;
 
 @end
-
-#endif /* CardProtocol_h */
