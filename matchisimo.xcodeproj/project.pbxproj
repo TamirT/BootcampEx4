@@ -28,6 +28,19 @@
 		3650BF881D7C4E9A008323F6 /* CardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3650BF871D7C4E9A008323F6 /* CardView.m */; };
 		3650BF8C1D7C4F07008323F6 /* SetCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3650BF8B1D7C4F07008323F6 /* SetCardView.m */; };
 		367240B31D75AC2000D89E42 /* PlayingCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 367240B21D75AC2000D89E42 /* PlayingCardView.m */; };
+		368A06BD1D7D3B5100003E1A /* SetTriangle.m in Sources */ = {isa = PBXBuildFile; fileRef = 368A06BC1D7D3B5100003E1A /* SetTriangle.m */; };
+		368A06C01D7D3B5E00003E1A /* SetCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = 368A06BF1D7D3B5E00003E1A /* SetCircle.m */; };
+		368A06C61D7D3B7C00003E1A /* SetColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 368A06C51D7D3B7C00003E1A /* SetColor.m */; };
+		368A06C91D7D3B8B00003E1A /* SetShade.m in Sources */ = {isa = PBXBuildFile; fileRef = 368A06C81D7D3B8B00003E1A /* SetShade.m */; };
+		368A06D81D7D3EC100003E1A /* AttributedRectsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 368A06D71D7D3EC100003E1A /* AttributedRectsView.m */; };
+		368A06DB1D7D3ED400003E1A /* AttributedTrianglesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 368A06DA1D7D3ED400003E1A /* AttributedTrianglesView.m */; };
+		368A06DE1D7D3EE000003E1A /* AttributedCirclesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 368A06DD1D7D3EE000003E1A /* AttributedCirclesView.m */; };
+		368A06E91D7D4F1700003E1A /* SetRect.m in Sources */ = {isa = PBXBuildFile; fileRef = 368A06E81D7D4F1700003E1A /* SetRect.m */; };
+		368A06F01D7D513200003E1A /* AttributedCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 368A06EF1D7D513200003E1A /* AttributedCircleView.m */; };
+		368A06F31D7D514100003E1A /* AttributedRectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 368A06F21D7D514100003E1A /* AttributedRectView.m */; };
+		368A06F61D7D514E00003E1A /* AttributedTriangleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 368A06F51D7D514E00003E1A /* AttributedTriangleView.m */; };
+		368A06F91D7D53CF00003E1A /* AttributedShapeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 368A06F81D7D53CF00003E1A /* AttributedShapeView.m */; };
+		368A06FC1D7D5B4100003E1A /* AttributedShapesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 368A06FB1D7D5B4100003E1A /* AttributedShapesView.m */; };
 		368A58541D75CDBB0039D634 /* Grid.m in Sources */ = {isa = PBXBuildFile; fileRef = 368A58531D75CDBB0039D634 /* Grid.m */; };
 /* End PBXBuildFile section */
 
@@ -91,6 +104,35 @@
 		3650BF8B1D7C4F07008323F6 /* SetCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetCardView.m; sourceTree = "<group>"; };
 		367240B11D75AC2000D89E42 /* PlayingCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayingCardView.h; sourceTree = "<group>"; };
 		367240B21D75AC2000D89E42 /* PlayingCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayingCardView.m; sourceTree = "<group>"; };
+		368A06B81D7D3B0800003E1A /* ColorInterpreter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ColorInterpreter.h; path = ../ColorInterpreter.h; sourceTree = "<group>"; };
+		368A06B91D7D3B1600003E1A /* ShadeInterpreter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShadeInterpreter.h; path = ../ShadeInterpreter.h; sourceTree = "<group>"; };
+		368A06BB1D7D3B5100003E1A /* SetTriangle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetTriangle.h; sourceTree = "<group>"; };
+		368A06BC1D7D3B5100003E1A /* SetTriangle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetTriangle.m; sourceTree = "<group>"; };
+		368A06BE1D7D3B5E00003E1A /* SetCircle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetCircle.h; sourceTree = "<group>"; };
+		368A06BF1D7D3B5E00003E1A /* SetCircle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetCircle.m; sourceTree = "<group>"; };
+		368A06C41D7D3B7C00003E1A /* SetColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetColor.h; sourceTree = "<group>"; };
+		368A06C51D7D3B7C00003E1A /* SetColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetColor.m; sourceTree = "<group>"; };
+		368A06C71D7D3B8B00003E1A /* SetShade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetShade.h; sourceTree = "<group>"; };
+		368A06C81D7D3B8B00003E1A /* SetShade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetShade.m; sourceTree = "<group>"; };
+		368A06D61D7D3EC100003E1A /* AttributedRectsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AttributedRectsView.h; path = ../AttributedRectsView.h; sourceTree = "<group>"; };
+		368A06D71D7D3EC100003E1A /* AttributedRectsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AttributedRectsView.m; path = ../AttributedRectsView.m; sourceTree = "<group>"; };
+		368A06D91D7D3ED400003E1A /* AttributedTrianglesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AttributedTrianglesView.h; path = ../AttributedTrianglesView.h; sourceTree = "<group>"; };
+		368A06DA1D7D3ED400003E1A /* AttributedTrianglesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AttributedTrianglesView.m; path = ../AttributedTrianglesView.m; sourceTree = "<group>"; };
+		368A06DC1D7D3EE000003E1A /* AttributedCirclesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AttributedCirclesView.h; path = ../AttributedCirclesView.h; sourceTree = "<group>"; };
+		368A06DD1D7D3EE000003E1A /* AttributedCirclesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AttributedCirclesView.m; path = ../AttributedCirclesView.m; sourceTree = "<group>"; };
+		368A06E61D7D4D4300003E1A /* BezierPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BezierPath.h; sourceTree = "<group>"; };
+		368A06E71D7D4F1700003E1A /* SetRect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetRect.h; sourceTree = "<group>"; };
+		368A06E81D7D4F1700003E1A /* SetRect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetRect.m; sourceTree = "<group>"; };
+		368A06EE1D7D513200003E1A /* AttributedCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttributedCircleView.h; sourceTree = "<group>"; };
+		368A06EF1D7D513200003E1A /* AttributedCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttributedCircleView.m; sourceTree = "<group>"; };
+		368A06F11D7D514100003E1A /* AttributedRectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttributedRectView.h; sourceTree = "<group>"; };
+		368A06F21D7D514100003E1A /* AttributedRectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttributedRectView.m; sourceTree = "<group>"; };
+		368A06F41D7D514E00003E1A /* AttributedTriangleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttributedTriangleView.h; sourceTree = "<group>"; };
+		368A06F51D7D514E00003E1A /* AttributedTriangleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttributedTriangleView.m; sourceTree = "<group>"; };
+		368A06F71D7D53CF00003E1A /* AttributedShapeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttributedShapeView.h; sourceTree = "<group>"; };
+		368A06F81D7D53CF00003E1A /* AttributedShapeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttributedShapeView.m; sourceTree = "<group>"; };
+		368A06FA1D7D5B4100003E1A /* AttributedShapesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttributedShapesView.h; sourceTree = "<group>"; };
+		368A06FB1D7D5B4100003E1A /* AttributedShapesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttributedShapesView.m; sourceTree = "<group>"; };
 		368A58521D75CDBB0039D634 /* Grid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Grid.h; sourceTree = "<group>"; };
 		368A58531D75CDBB0039D634 /* Grid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Grid.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -217,6 +259,11 @@
 		3650BF891D7C4ECA008323F6 /* CardViews */ = {
 			isa = PBXGroup;
 			children = (
+				368A06E11D7D484500003E1A /* SetColors */,
+				368A06ED1D7D4FB300003E1A /* AttributedShapeView */,
+				368A06DF1D7D479700003E1A /* SetShapes */,
+				368A06E21D7D485500003E1A /* AttributedShapesViews */,
+				368A06E01D7D482600003E1A /* SetShades */,
 				3650BF861D7C4E9A008323F6 /* CardView.h */,
 				3650BF871D7C4E9A008323F6 /* CardView.m */,
 				367240B11D75AC2000D89E42 /* PlayingCardView.h */,
@@ -225,6 +272,70 @@
 				3650BF8B1D7C4F07008323F6 /* SetCardView.m */,
 			);
 			name = CardViews;
+			sourceTree = "<group>";
+		};
+		368A06DF1D7D479700003E1A /* SetShapes */ = {
+			isa = PBXGroup;
+			children = (
+				368A06BB1D7D3B5100003E1A /* SetTriangle.h */,
+				368A06BC1D7D3B5100003E1A /* SetTriangle.m */,
+				368A06BE1D7D3B5E00003E1A /* SetCircle.h */,
+				368A06BF1D7D3B5E00003E1A /* SetCircle.m */,
+				368A06E61D7D4D4300003E1A /* BezierPath.h */,
+				368A06E71D7D4F1700003E1A /* SetRect.h */,
+				368A06E81D7D4F1700003E1A /* SetRect.m */,
+			);
+			name = SetShapes;
+			sourceTree = "<group>";
+		};
+		368A06E01D7D482600003E1A /* SetShades */ = {
+			isa = PBXGroup;
+			children = (
+				368A06B91D7D3B1600003E1A /* ShadeInterpreter.h */,
+				368A06C71D7D3B8B00003E1A /* SetShade.h */,
+				368A06C81D7D3B8B00003E1A /* SetShade.m */,
+			);
+			name = SetShades;
+			sourceTree = "<group>";
+		};
+		368A06E11D7D484500003E1A /* SetColors */ = {
+			isa = PBXGroup;
+			children = (
+				368A06B81D7D3B0800003E1A /* ColorInterpreter.h */,
+				368A06C41D7D3B7C00003E1A /* SetColor.h */,
+				368A06C51D7D3B7C00003E1A /* SetColor.m */,
+			);
+			name = SetColors;
+			sourceTree = "<group>";
+		};
+		368A06E21D7D485500003E1A /* AttributedShapesViews */ = {
+			isa = PBXGroup;
+			children = (
+				368A06D91D7D3ED400003E1A /* AttributedTrianglesView.h */,
+				368A06DA1D7D3ED400003E1A /* AttributedTrianglesView.m */,
+				368A06DC1D7D3EE000003E1A /* AttributedCirclesView.h */,
+				368A06DD1D7D3EE000003E1A /* AttributedCirclesView.m */,
+				368A06D61D7D3EC100003E1A /* AttributedRectsView.h */,
+				368A06D71D7D3EC100003E1A /* AttributedRectsView.m */,
+				368A06FA1D7D5B4100003E1A /* AttributedShapesView.h */,
+				368A06FB1D7D5B4100003E1A /* AttributedShapesView.m */,
+			);
+			name = AttributedShapesViews;
+			sourceTree = "<group>";
+		};
+		368A06ED1D7D4FB300003E1A /* AttributedShapeView */ = {
+			isa = PBXGroup;
+			children = (
+				368A06EE1D7D513200003E1A /* AttributedCircleView.h */,
+				368A06EF1D7D513200003E1A /* AttributedCircleView.m */,
+				368A06F11D7D514100003E1A /* AttributedRectView.h */,
+				368A06F21D7D514100003E1A /* AttributedRectView.m */,
+				368A06F41D7D514E00003E1A /* AttributedTriangleView.h */,
+				368A06F51D7D514E00003E1A /* AttributedTriangleView.m */,
+				368A06F71D7D53CF00003E1A /* AttributedShapeView.h */,
+				368A06F81D7D53CF00003E1A /* AttributedShapeView.m */,
+			);
+			name = AttributedShapeView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -357,15 +468,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				368A06F31D7D514100003E1A /* AttributedRectView.m in Sources */,
+				368A06BD1D7D3B5100003E1A /* SetTriangle.m in Sources */,
 				3648ACEE1D6C7EB300156402 /* ViewController.m in Sources */,
+				368A06DB1D7D3ED400003E1A /* AttributedTrianglesView.m in Sources */,
+				368A06FC1D7D5B4100003E1A /* AttributedShapesView.m in Sources */,
+				368A06F01D7D513200003E1A /* AttributedCircleView.m in Sources */,
 				3648AD2B1D6C7FB000156402 /* PlayingCardDeck.m in Sources */,
 				3648ACEB1D6C7EB300156402 /* AppDelegate.m in Sources */,
+				368A06C91D7D3B8B00003E1A /* SetShade.m in Sources */,
 				367240B31D75AC2000D89E42 /* PlayingCardView.m in Sources */,
 				368A58541D75CDBB0039D634 /* Grid.m in Sources */,
 				361E2CCE1D6F1BBB000890AF /* SetCard.m in Sources */,
 				361E2CC81D6F177C000890AF /* MatchingViewController.m in Sources */,
+				368A06F91D7D53CF00003E1A /* AttributedShapeView.m in Sources */,
+				368A06F61D7D514E00003E1A /* AttributedTriangleView.m in Sources */,
+				368A06D81D7D3EC100003E1A /* AttributedRectsView.m in Sources */,
 				36246C411D74054600F757FC /* CardGameViewController.m in Sources */,
+				368A06DE1D7D3EE000003E1A /* AttributedCirclesView.m in Sources */,
 				3650BF8C1D7C4F07008323F6 /* SetCardView.m in Sources */,
+				368A06E91D7D4F1700003E1A /* SetRect.m in Sources */,
+				368A06C01D7D3B5E00003E1A /* SetCircle.m in Sources */,
 				3648AD2A1D6C7FB000156402 /* PlayingCard.m in Sources */,
 				3648AD281D6C7FB000156402 /* CardMatchingGame.m in Sources */,
 				3648ACE81D6C7EB300156402 /* main.m in Sources */,
@@ -373,6 +496,7 @@
 				3648AD291D6C7FB000156402 /* Deck.m in Sources */,
 				3648AD271D6C7FB000156402 /* Card.m in Sources */,
 				3650BF881D7C4E9A008323F6 /* CardView.m in Sources */,
+				368A06C61D7D3B7C00003E1A /* SetColor.m in Sources */,
 				361E2CD71D72D688000890AF /* SetGameViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

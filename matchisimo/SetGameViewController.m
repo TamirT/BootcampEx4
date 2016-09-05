@@ -58,11 +58,12 @@
   for(NSUInteger i = 0 ; i <  cardsNumber ; i++){
     SetCardView *cardView = self.cardViews[i];
     Card *card = [self.game cardAtIndex:i];
+    cardView.chosen = card.isChosen;
     if(card.isMatched){
       cardView.userInteractionEnabled = NO;
-      cardView.alpha = 0.5;
-    }else{
-      cardView.chosen = card.isChosen;
+      cardView.alpha = 0.3;
+    }else if(cardView.chosen){
+      cardView.alpha = 0.8;
     }
 
 
@@ -72,7 +73,7 @@
 }
 
 
-- (NSShadow *)getShadow:(NSString *)str{
+- (NSShadow *)getShade:(NSString *)str{
   NSShadow *shadow = [[NSShadow alloc] init];
   shadow.shadowOffset = CGSizeMake(1.0, 1.0);
   shadow.shadowBlurRadius = 1.0;
@@ -90,6 +91,17 @@
 - (CardView *)createNewCardView{
 
   return [[SetCardView alloc] init];
+}
+
+- (void)tap:(UITapGestureRecognizer *)gesture{
+  if ((gesture.state == UIGestureRecognizerStateChanged) ||
+      (gesture.state == UIGestureRecognizerStateEnded)) {
+    SetCardView *cardView = (SetCardView *)gesture.view;
+    NSInteger cardIndex = [self.cardViews indexOfObject:cardView];
+    [self.game chooseCardAtIndex:cardIndex type:self.gameType];
+    [self updateUI];
+
+  }
 }
 
 -(NSMutableAttributedString *)getCardsAsString{
@@ -115,7 +127,7 @@
   NSRange strRange = NSMakeRange(0, title.length);
   [title addAttribute:NSForegroundColorAttributeName value:[self getUIColor:card.color]
                 range:strRange];
-  [title addAttribute:NSShadowAttributeName value:[self getShadow:card.shade] range:strRange];
+  [title addAttribute:NSShadowAttributeName value:[self getShade:card.shade] range:strRange];
   return title;
 }
 

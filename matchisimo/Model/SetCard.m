@@ -25,7 +25,7 @@ static const NSInteger maxNumberOfShapes = 3;
 }
 
 + (NSArray *)validShades{
-  return @[@"shade_one" ,@"shade_two" ,@"shade_three"];
+  return @[@"red" ,@"blue" ,@"green"];
 }
 
 +(NSInteger)maxInstancesNumber{
@@ -51,6 +51,12 @@ static const NSInteger maxNumberOfShapes = 3;
 - (void)setNumber:(NSUInteger)number{
   if(number <= maxNumberOfShapes){
     _number = number;
+  }
+}
+
+- (void)setShade:(NSString *)shade{
+  if([[SetCard validShades] containsObject:shade]){
+    _shade = shade;
   }
 }
 

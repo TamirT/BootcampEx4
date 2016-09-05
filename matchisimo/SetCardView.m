@@ -8,6 +8,16 @@
 
 #import "SetCardView.h"
 #import "SetCard.h"
+#import "AttributedTrianglesView.h"
+#import "AttributedRectsView.h"
+#import "AttributedCirclesView.h"
+#import "SetColor.h"
+
+@interface SetCardView()
+
+@property (nonatomic) CGFloat faceCardScaleFactor;
+@property (strong, nonatomic) UIView *drawer;
+@end
 
 @implementation SetCardView
 
@@ -18,6 +28,19 @@
 #define CORNER_RADIUS 12.0
 
 @synthesize positionInGrid = _positionInGrid;
+@synthesize faceCardScaleFactor = _faceCardScaleFactor;
+
+- (CGFloat)faceCardScaleFactor{
+  if (!_faceCardScaleFactor){
+
+  }_faceCardScaleFactor = DEFAULT_FACE_CARD_SCALE_FACTOR;
+  return _faceCardScaleFactor;
+}
+
+- (void)setFaceCardScaleFactor:(CGFloat)faceCardScaleFactor{
+  _faceCardScaleFactor = faceCardScaleFactor;
+  [self setNeedsDisplay];
+}
 
 - (CGPoint)positionInGrid{
   return _positionInGrid;
@@ -31,8 +54,6 @@
 
 -(void)setCardView:(Card *)card{
 
-//  if([card isKindOfClass:[PlayingCard class]]){
-//
     SetCard *playCard = (SetCard *)card;
     [self setNumber:playCard.number];
     [self setShade:playCard.shade];
@@ -60,6 +81,27 @@
   _shade = shade;
 }
 
++ (NSArray *)validShapes{
+  return @[@"▲" ,@"●" ,@"■"];
+}
+
+-(UIView *)drawer{
+  if(!_drawer){
+
+    UIColor *stroke = [SetColor getUIColor:self.shade];
+    UIColor *fill = [SetColor getUIColor:self.color];
+    if([self.shape isEqualToString:@"▲"]){
+      _drawer = [[AttributedTrianglesView alloc] initWithProperties:self.number : stroke :fill];
+    }else if([self.shape isEqualToString:@"●"]){
+      _drawer = [[AttributedCirclesView alloc] initWithProperties:self.number : stroke :fill];
+    }else {
+      _drawer = [[AttributedRectsView alloc] initWithProperties:self.number : stroke :fill];
+    }
+  }
+
+  return _drawer;
+}
+
 - (CGFloat)cornerRadius { return CORNER_RADIUS * [self cornerScaleFactor]; }
 - (CGFloat)cornerScaleFactor { return self.bounds.size.height / CORNER_FONT_STANDARD_HEIGHT; }
 //- (CGFloat)cornerRadius { return CORNER_RADIUS * [self cornerScaleFactor]; }
@@ -80,18 +122,16 @@
   [[UIColor blackColor] setStroke];
   [roundedRect stroke];
 
-//
-//    UIImage *faceImage = [UIImage imageNamed:[NSString stringWithFormat:@"%@%@", [self rankAsString], self.suit]];
-//    if (faceImage) {
-//      CGRect imageRect = CGRectInset(self.bounds,
-//                                     self.bounds.size.width * (1.0 - self.faceCardScaleFactor),
-//                                     self.bounds.size.height * (1.0 - self.faceCardScaleFactor));
-//      [faceImage drawInRect:imageRect];
-//    } else {
-//      [self drawPips];
-//    }
-//
-//    [self drawCorners];
+  // Draw Face
+  CGRect imageRect = CGRectInset(self.bounds,
+                                 self.bounds.size.width * (1.0 - self.faceCardScaleFactor),
+                                                                  self.bounds.size.height *
+                                 (1.0 - self.faceCardScaleFactor));
+
+  self.drawer.frame = imageRect;
+  [self addSubview:self.drawer];
+  [self.drawer setNeedsDisplay];
+
 }
 
 
