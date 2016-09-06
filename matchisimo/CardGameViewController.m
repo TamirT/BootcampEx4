@@ -44,7 +44,7 @@
 }
 
 - (NSInteger)gameType{
-  return 0;
+  return 3;
 }
 
 - (CardMatchingGame *)game{
@@ -79,6 +79,25 @@
   return _grid;
 }
 
+-(CardView *)deckCardView{
+
+  if(!_deckCardView){
+    if([self.deck cardsLeft] == 0){
+      return nil;
+    }
+    _deckCardView = [[PlayingCardView alloc] init];
+    _deckCardView.frame = [self calculateDeckFrame];
+    [self.gameView addSubview:_deckCardView];
+    UITapGestureRecognizer *tap =
+    [[UITapGestureRecognizer alloc] initWithTarget:self
+                                            action:@selector(dealThreeCardsFromDeck:)];
+    [_deckCardView addGestureRecognizer:tap];
+
+  }
+
+  return _deckCardView;
+}
+
 - (void)viewDidLoad {
   [super viewDidLoad];
 
@@ -100,8 +119,11 @@
   }
 
   [self fixCardsLocations];
-  
-  
+}
+
+- (void)didReceiveMemoryWarning {
+  [super didReceiveMemoryWarning];
+
 }
 
 // Turns an index in the cardView array to an
@@ -138,22 +160,10 @@
     _pinchGestureRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self
                                                                             action:@selector(pinch:)];
   }
-
   return _pinchGestureRecognizer;
 }
 
-- (void)didReceiveMemoryWarning {
-  [super didReceiveMemoryWarning];
 
-}
-
-- (NSMutableAttributedString *)titleForCard:(Card *)card{
-  return nil;
-}
-
-- (UIImage *)backgroundImageForCard:(Card *)card{
-  return nil;
-}
 
 - (IBAction)reset:(id)sender {
   self.game = nil;
@@ -180,6 +190,10 @@
   // implement in inheriting class
 }
 
+-(void)updateUI{
+  // implement in inherting class
+}
+
 - (void)pinch:(UIPinchGestureRecognizer *)gesture{
   if(gesture.state == UIGestureRecognizerStateBegan ||
      gesture.state == UIGestureRecognizerStateChanged){
@@ -196,10 +210,6 @@
     [self fixCardsLocations];
   }
 
-}
-
--(void)updateUI{
-  // implement in inherting class
 }
 
 - (CGRect)calculateDeckFrame{
@@ -237,7 +247,7 @@
   NSUInteger cardsDrawn = [self.game numOfCardsDrawn];
   NSUInteger cardsLeft = [self.game numOfCardsLeft];
 
-  CardView *cardView = [self addCard:card];
+  CardView *cardView = [self createCardViewFromCard:card];
   [self.gameView addSubview:cardView];
 
                        if(cardsDrawn == [self initialCardsCount] || cardsLeft == 0){
@@ -247,8 +257,6 @@
 
   [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut
                    animations:^{
-//                     cardView.frame = [self calculateDeckFrame];
-                     NSLog(@"center : %f %f",cardView.center.x , cardView.center.y);
                      cardView.positionInGrid = pointInGrid;
                      cardView.center = [self.grid centerOfCellAtRow:cardView.positionInGrid.y
                                                            inColumn:cardView.positionInGrid.x];
@@ -270,11 +278,10 @@
   return nil;
 }
 
-- (CardView *)addCard:(Card *)card{
+- (CardView *)createCardViewFromCard:(Card *)card{
   CardView *cardView = [self createNewCardView];
   cardView.frame = [self calculateDeckFrame];
 
-  NSLog(@"Adding card - frame : %f %f" , cardView.frame.origin.x , cardView.frame.origin.y);
   [cardView setCardView:card];
 
   UITapGestureRecognizer *tapGestureRecognizer =
@@ -297,23 +304,5 @@
                                               userInfo:nil repeats:YES];
 }
 
--(CardView *)deckCardView{
-
-  if(!_deckCardView){
-    if([self.deck cardsLeft] == 0){
-      return nil;
-    }
-    _deckCardView = [[PlayingCardView alloc] init];
-    _deckCardView.frame = [self calculateDeckFrame];
-    [self.gameView addSubview:_deckCardView];
-    UITapGestureRecognizer *tap =
-    [[UITapGestureRecognizer alloc] initWithTarget:self
-                                            action:@selector(dealThreeCardsFromDeck:)];
-    [_deckCardView addGestureRecognizer:tap];
-    
-  }
-  
-  return _deckCardView;
-}
 
 @end

@@ -37,24 +37,9 @@
   return [[PlayingCardDeck alloc] init];
 }
 
-- (NSInteger)gameType{
-    return self.gameType = 3;
-}
-
 - (CardView *)createNewCardView{
 
   return [[PlayingCardView alloc] init];
-}
-
-
-
-- (NSMutableAttributedString *)titleForCard:(Card *)card{
-  NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:@" "];
-  if([card isChosen]){
-    [str appendAttributedString:[[NSMutableAttributedString alloc] initWithString:card.contents]];
-  }
-
-  return str;
 }
 
 -(void)updateUI{
@@ -87,16 +72,6 @@
     [self updateUI];
   }
 
-}
-
-
-- (UIImage *)backgroundImageForCard:(Card *)card{
-  return [UIImage imageNamed:card.isChosen ? @"blankRounded" : @"cardback"];
-}
-
-- (void)flipCardOnback:(UIButton *)sender{
-  [sender setBackgroundImage:[UIImage imageNamed:@"cardback"] forState:(UIControlStateNormal)];
-  [sender setTitle:@"" forState:UIControlStateNormal];
 }
 
 

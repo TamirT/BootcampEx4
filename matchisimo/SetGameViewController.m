@@ -38,8 +38,22 @@
   return [[SetCardDeck alloc] init];
 }
 
-- (NSInteger)gameType{
-  return 3;
+
+
+- (CardView *)createNewCardView{
+
+  return [[SetCardView alloc] init];
+}
+
+- (void)tap:(UITapGestureRecognizer *)gesture{
+  if ((gesture.state == UIGestureRecognizerStateChanged) ||
+      (gesture.state == UIGestureRecognizerStateEnded)) {
+    SetCardView *cardView = (SetCardView *)gesture.view;
+    NSInteger cardIndex = [self.cardViews indexOfObject:cardView];
+    [self.game chooseCardAtIndex:cardIndex type:self.gameType];
+    [self updateUI];
+
+  }
 }
 
 - (UIColor *)getUIColor:(NSString *)str{
@@ -62,8 +76,6 @@
   }
 
 }
-
-
 
 -(void)updateUI{
 
@@ -99,11 +111,8 @@
     }else{
       cardView.alpha = 1.0;
     }
-
-
   }
   self.scoreLabel.text = [NSString stringWithFormat:@"Score: %ld", (long)self.game.score];
-  
 }
 
 - (NSShadow *)getShade:(NSString *)str{
@@ -119,47 +128,6 @@
   }
   return shadow;
   
-}
-
-- (CardView *)createNewCardView{
-
-  return [[SetCardView alloc] init];
-}
-
-- (void)tap:(UITapGestureRecognizer *)gesture{
-  if ((gesture.state == UIGestureRecognizerStateChanged) ||
-      (gesture.state == UIGestureRecognizerStateEnded)) {
-    SetCardView *cardView = (SetCardView *)gesture.view;
-    NSInteger cardIndex = [self.cardViews indexOfObject:cardView];
-    [self.game chooseCardAtIndex:cardIndex type:self.gameType];
-    [self updateUI];
-
-  }
-}
-
-
-- (NSMutableAttributedString *)titleForCard:(SetCard *)card{
-  NSMutableAttributedString *title = [[NSMutableAttributedString alloc] initWithString:@""];
-  if(![card isKindOfClass:[SetCard class]]){
-    return title;
-  }
-  for(NSInteger i = 0 ; i < card.number; i++){
-    [title appendAttributedString:[[NSMutableAttributedString alloc] initWithString:card.shape]];
-  }
-  NSRange strRange = NSMakeRange(0, title.length);
-  [title addAttribute:NSForegroundColorAttributeName value:[self getUIColor:card.color]
-                range:strRange];
-  [title addAttribute:NSShadowAttributeName value:[self getShade:card.shade] range:strRange];
-  return title;
-}
-
-- (UIImage *)backgroundImageForCard:(Card *)card{
-  return [UIImage imageNamed:card.isChosen ? @"pressRounded" : @"blankRounded"];
-}
-
-- (void)flipCardOnback:(UIButton *)sender{
-  [sender setBackgroundImage:[UIImage imageNamed:@"cardback"] forState:(UIControlStateNormal)];
-  [sender setTitle:@"" forState:UIControlStateNormal];
 }
 
 @end
