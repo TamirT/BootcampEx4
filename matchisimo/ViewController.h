@@ -7,8 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PlayingCardDeck.h"
-#import "CardMatchingGame.h"
 
 @interface ViewController : UIViewController
 

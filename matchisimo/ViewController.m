@@ -7,7 +7,6 @@
 //
 
 #import "ViewController.h"
-#import "Model/Deck.h"
 
 @interface ViewController ()
 @end

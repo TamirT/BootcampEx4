@@ -77,6 +77,7 @@
 }
 
 - (void)tap:(UITapGestureRecognizer *)gesture{
+
   if ((gesture.state == UIGestureRecognizerStateChanged) ||
       (gesture.state == UIGestureRecognizerStateEnded)) {
     PlayingCardView *cardView = (PlayingCardView *)gesture.view;
@@ -84,21 +85,8 @@
     NSInteger cardIndex = [self.cardViews indexOfObject:cardView];
     [self.game chooseCardAtIndex:cardIndex type:self.gameType];
     [self updateUI];
-
-  }
-}
-
-
--(NSMutableAttributedString *)getCardsAsString{
-  NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:@" "];
-
-  for(Card *card in self.game.lastHand){
-    [str appendAttributedString:[[NSMutableAttributedString alloc] initWithString:card.contents]];
-    [str appendAttributedString:[[NSMutableAttributedString alloc] initWithString:@" "]];
-
   }
 
-  return str;
 }
 
 

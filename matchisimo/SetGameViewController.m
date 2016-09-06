@@ -52,6 +52,19 @@
   
 }
 
+- (void)fixCardsLocations{
+  NSUInteger cardCounter = [self.cardViews count];
+  for(NSUInteger i = 0 ; i < cardCounter; i++){
+    Card *card = [self.game cardAtIndex:i];
+    if(!card.isMatched){
+       [self fixCardViewPosition:self.cardViews[i]];
+    }
+  }
+
+}
+
+
+
 -(void)updateUI{
 
   NSUInteger cardsNumber = [self.cardViews count];
@@ -61,9 +74,30 @@
     cardView.chosen = card.isChosen;
     if(card.isMatched){
       cardView.userInteractionEnabled = NO;
-      cardView.alpha = 0.3;
+      cardView.alpha = 0.2;
+      // add animation here for every matched card
+      [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut
+                       animations:^{
+                         CGFloat x = arc4random_uniform(self.view.frame.size.width);
+                         CGFloat y = -100;
+                         CGPoint newLoc = CGPointMake(x, y);
+                         cardView.positionInGrid = newLoc;
+                         cardView.center = newLoc;
+                       }
+                       completion:^(BOOL finished){
+                         NSUInteger cardIndex = [self.cardViews indexOfObject:cardView];
+                         [self.cardViews removeObject:cardView];
+                         [self.game.cards removeObject:card];
+
+                         NSLog([NSString stringWithFormat:@"added slot i : %d" ,cardIndex]);
+                         [cardView removeFromSuperview];
+                         [self fixCardsLocations];
+                       }
+       ];
     }else if(cardView.chosen){
-      cardView.alpha = 0.8;
+      cardView.alpha = 0.7;
+    }else{
+      cardView.alpha = 1.0;
     }
 
 
@@ -71,7 +105,6 @@
   self.scoreLabel.text = [NSString stringWithFormat:@"Score: %ld", (long)self.game.score];
   
 }
-
 
 - (NSShadow *)getShade:(NSString *)str{
   NSShadow *shadow = [[NSShadow alloc] init];
@@ -104,17 +137,6 @@
   }
 }
 
--(NSMutableAttributedString *)getCardsAsString{
-  NSMutableAttributedString *str = [[NSMutableAttributedString alloc] init];
-
-  for(Card *card in self.game.lastHand){
-    [str appendAttributedString:[self titleForCard:card]];
-    [str appendAttributedString:[[NSMutableAttributedString alloc] initWithString:@"  "]];
-
-  }
-
-  return str;
-}
 
 - (NSMutableAttributedString *)titleForCard:(SetCard *)card{
   NSMutableAttributedString *title = [[NSMutableAttributedString alloc] initWithString:@""];

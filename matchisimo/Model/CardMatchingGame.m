@@ -12,13 +12,14 @@
 
 @interface CardMatchingGame()
 @property (nonatomic, readwrite) NSInteger score;
-@property (nonatomic, strong) NSMutableArray *cards;
+
 @property (nonatomic,strong) NSMutableArray *chosen;
 @property (nonatomic,strong) NSString *stateMsg;
 @property (nonatomic) NSInteger numOfChosen;
 @end
 
 @implementation CardMatchingGame
+
 
 -(NSArray *)lastHand{
   if(!_lastHand){
@@ -58,6 +59,7 @@
 - (NSUInteger)numOfCardsLeft{
   return [self.deck cardsLeft];
 }
+
 
 -(Card *)drawACard{
   Card *card = [self.deck drawRandomCard];
@@ -101,17 +103,7 @@
 
   Card *lastCard = self.lastHand.lastObject;
   // reset lastHand array if needed
-  switch (self.state) {
-    case MATCH:
-      self.lastHand = nil;
-      break;
-    case PENALTY:
-      self.lastHand = nil;
-      [self.lastHand addObject:lastCard];
-      break;
-    default:
-      break;
-  }
+
 
   // get currently clicked card
   Card *card = [self cardAtIndex:index];

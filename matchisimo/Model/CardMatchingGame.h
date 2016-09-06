@@ -27,7 +27,7 @@ typedef enum{
     GAME_END
     
 } GameState;
-
+@property (nonatomic, strong) NSMutableArray *cards;
 @property(nonatomic,readonly) NSInteger score;
 @property (nonatomic, readwrite) NSInteger roundScore;
 @property(nonatomic, strong) Deck *deck;
