@@ -19,13 +19,16 @@
 
 @property (strong, nonatomic)IBOutlet UIView *gameView;
 @property (strong, nonatomic)CardView *deckCardView;
+@property (strong, nonatomic)UIView *pileCardView;
 
 @property (nonatomic) CGSize currentCardSize;
 @property (strong, nonatomic)NSTimer* timer;
 @property (nonatomic) BOOL gameInitialized;
 
 @property (strong, nonatomic)UITapGestureRecognizer *tapGestureRecognizer;
+@property (strong, nonatomic)UITapGestureRecognizer *tapAfterPincghGestureRecoginizer;
 @property (strong, nonatomic)UIPinchGestureRecognizer *pinchGestureRecognizer;
+
 
 @end
 
@@ -35,6 +38,15 @@
 - (NSUInteger)initialCardsCount{
   return 0;
 }
+
+- (void)setPileCardView:(UIView *)pileCardView{
+  if(pileCardView == nil){
+    _pileCardView = nil;
+  }else if(!_pileCardView){
+    _pileCardView = pileCardView;
+  }
+}
+
 
 -(NSMutableArray *)cardViews{
   if(!_cardViews){
@@ -117,8 +129,10 @@
     [self initialDealCardsFromDeck];
     self.gameInitialized = YES;
   }
+  if(!self.pileCardView){
+    [self fixCardsLocations];
+  }
 
-  [self fixCardsLocations];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -163,6 +177,14 @@
   return _pinchGestureRecognizer;
 }
 
+-(UIPinchGestureRecognizer *)tapAfterPincghGestureRecoginizer{
+  if(!_tapAfterPincghGestureRecoginizer){
+    _tapAfterPincghGestureRecoginizer = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                        action:@selector(tapAfterPinched:)];
+  }
+  return _tapAfterPincghGestureRecoginizer;
+}
+
 
 
 - (IBAction)reset:(id)sender {
@@ -194,22 +216,44 @@
   // implement in inherting class
 }
 
+- (void)tapAfterPinched:(UITapGestureRecognizer *)gesture{
+
+  [self viewDidLayoutSubviews];
+  [self.pileCardView removeFromSuperview];
+  self.pileCardView = nil;
+}
+
 - (void)pinch:(UIPinchGestureRecognizer *)gesture{
   if(gesture.state == UIGestureRecognizerStateBegan ||
      gesture.state == UIGestureRecognizerStateChanged){
     for(CardView *cardView in self.cardViews){
       [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut
                        animations:^{
+
                          CGPoint point = CGPointMake(self.gameView.frame.size.height / 2,
                                                      self.gameView.frame.size.width / 2);
                          cardView.center = point;
+
                        }
-                       completion:^(BOOL finished){}];
+                       completion:^(BOOL finished){
+
+                         if([[self.cardViews lastObject] isEqual:cardView] && self.pileCardView == nil){
+                           CGRect frame = CGRectMake(cardView.frame.origin.x,
+                                                     cardView.frame.origin.y,
+                                                     cardView.frame.size.width,
+                                                     cardView.frame.size.height);
+                           self.pileCardView = [[UIView alloc] initWithFrame:frame];
+                           [self.pileCardView addGestureRecognizer:self.tapAfterPincghGestureRecoginizer];
+                           [self.gameView addSubview:self.pileCardView];
+                         }
+
+                       }];
+
+          
     }
   }else if (gesture.state == UIGestureRecognizerStateEnded){
-    [self fixCardsLocations];
-  }
 
+  }
 }
 
 - (CGRect)calculateDeckFrame{

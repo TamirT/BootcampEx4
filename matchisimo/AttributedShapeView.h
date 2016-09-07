@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "BezierPath.h"
-#import "ShadeInterpreter.h"
-#import "ColorInterpreter.h"
 
 @interface AttributedShapeView : UIView
 

@@ -106,11 +106,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "matchisimo/CardGameViewController.m"
-            timestampString = "494855416.19633"
+            timestampString = "494924728.092186"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "121"
-            endingLineNumber = "121"
+            startingLineNumber = "157"
+            endingLineNumber = "157"
             landmarkName = "-fixCardViewPosition:"
             landmarkType = "5">
          </BreakpointContent>
@@ -122,11 +122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "matchisimo/CardGameViewController.m"
-            timestampString = "494855416.19633"
+            timestampString = "494924728.092186"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "120"
-            endingLineNumber = "120"
+            startingLineNumber = "156"
+            endingLineNumber = "156"
             landmarkName = "-fixCardViewPosition:"
             landmarkType = "5">
          </BreakpointContent>
@@ -154,11 +154,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "matchisimo/CardGameViewController.m"
-            timestampString = "494855048.689496"
+            timestampString = "494924728.092186"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
             landmarkName = "-cardViews"
             landmarkType = "5">
          </BreakpointContent>
@@ -170,11 +170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "matchisimo/CardGameViewController.m"
-            timestampString = "494855416.19633"
+            timestampString = "494924728.092186"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "124"
-            endingLineNumber = "124"
+            startingLineNumber = "160"
+            endingLineNumber = "160"
             landmarkName = "-fixCardViewPosition:"
             landmarkType = "5">
          </BreakpointContent>
@@ -186,11 +186,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "matchisimo/CardGameViewController.m"
-            timestampString = "494855416.19633"
+            timestampString = "494924728.092186"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "113"
-            endingLineNumber = "113"
+            startingLineNumber = "149"
+            endingLineNumber = "149"
             landmarkName = "-indexToPointInGrid:"
             landmarkType = "5">
          </BreakpointContent>
@@ -202,11 +202,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "matchisimo/CardGameViewController.m"
-            timestampString = "494855416.19633"
+            timestampString = "494925269.061616"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "295"
-            endingLineNumber = "295"
+            startingLineNumber = "346"
+            endingLineNumber = "346"
             landmarkName = "-initialDealCardsFromDeck"
             landmarkType = "5">
          </BreakpointContent>
@@ -266,11 +266,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "matchisimo/CardGameViewController.m"
-            timestampString = "494855416.19633"
+            timestampString = "494925269.061616"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "228"
-            endingLineNumber = "228"
+            startingLineNumber = "282"
+            endingLineNumber = "282"
             landmarkName = "-dealCardFromDeck:"
             landmarkType = "5">
          </BreakpointContent>
@@ -298,11 +298,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "matchisimo/MatchingViewController.m"
-            timestampString = "494847645.62191"
+            timestampString = "494864033.750328"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
             landmarkName = "-tap:"
             landmarkType = "5">
          </BreakpointContent>
@@ -506,11 +506,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "matchisimo/CardGameViewController.m"
-            timestampString = "494855416.19633"
+            timestampString = "494925269.061616"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "283"
-            endingLineNumber = "283"
+            startingLineNumber = "334"
+            endingLineNumber = "334"
             landmarkName = "-createCardViewFromCard:"
             landmarkType = "5">
          </BreakpointContent>
@@ -522,11 +522,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "matchisimo/CardGameViewController.m"
-            timestampString = "494855416.19633"
+            timestampString = "494925269.061616"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "284"
-            endingLineNumber = "284"
+            startingLineNumber = "335"
+            endingLineNumber = "335"
             landmarkName = "-createCardViewFromCard:"
             landmarkType = "5">
          </BreakpointContent>
@@ -538,11 +538,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "matchisimo/CardGameViewController.m"
-            timestampString = "494855416.19633"
+            timestampString = "494925269.061616"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "274"
-            endingLineNumber = "274"
+            startingLineNumber = "326"
+            endingLineNumber = "326"
             landmarkName = "-createCardViewFromCard:"
             landmarkType = "5">
          </BreakpointContent>
@@ -554,11 +554,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "matchisimo/CardGameViewController.m"
-            timestampString = "494855416.19633"
+            timestampString = "494924728.092186"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "112"
-            endingLineNumber = "112"
+            startingLineNumber = "148"
+            endingLineNumber = "148"
             landmarkName = "-indexToPointInGrid:"
             landmarkType = "5">
          </BreakpointContent>
@@ -570,11 +570,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "matchisimo/CardGameViewController.m"
-            timestampString = "494855416.19633"
+            timestampString = "494924728.092186"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "111"
-            endingLineNumber = "111"
+            startingLineNumber = "147"
+            endingLineNumber = "147"
             landmarkName = "-indexToPointInGrid:"
             landmarkType = "5">
          </BreakpointContent>
@@ -586,11 +586,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "matchisimo/CardGameViewController.m"
-            timestampString = "494855416.19633"
+            timestampString = "494924728.092186"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "123"
-            endingLineNumber = "123"
+            startingLineNumber = "159"
+            endingLineNumber = "159"
             landmarkName = "-fixCardViewPosition:"
             landmarkType = "5">
          </BreakpointContent>
@@ -602,11 +602,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "matchisimo/CardGameViewController.m"
-            timestampString = "494855416.19633"
+            timestampString = "494925269.061616"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "227"
-            endingLineNumber = "227"
+            startingLineNumber = "281"
+            endingLineNumber = "281"
             landmarkName = "-dealCardFromDeck:"
             landmarkType = "5">
          </BreakpointContent>
@@ -618,11 +618,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "matchisimo/CardGameViewController.m"
-            timestampString = "494855416.19633"
+            timestampString = "494925269.061616"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "235"
-            endingLineNumber = "235"
+            startingLineNumber = "289"
+            endingLineNumber = "289"
             landmarkName = "-dealCardFromDeck:"
             landmarkType = "5">
          </BreakpointContent>
@@ -666,11 +666,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "matchisimo/CardGameViewController.m"
-            timestampString = "494855416.19633"
+            timestampString = "494925269.061616"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "275"
-            endingLineNumber = "275"
+            startingLineNumber = "327"
+            endingLineNumber = "327"
             landmarkName = "-createCardViewFromCard:"
             landmarkType = "5">
          </BreakpointContent>
@@ -682,11 +682,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "matchisimo/CardGameViewController.m"
-            timestampString = "494855416.19633"
+            timestampString = "494925269.061616"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "214"
-            endingLineNumber = "214"
+            startingLineNumber = "268"
+            endingLineNumber = "268"
             landmarkName = "-fixCardsLocations"
             landmarkType = "5">
          </BreakpointContent>
@@ -736,6 +736,54 @@
             startingLineNumber = "123"
             endingLineNumber = "123"
             landmarkName = "-chooseCardAtIndex:type:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "matchisimo/CardGameViewController.m"
+            timestampString = "494924728.092186"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "221"
+            endingLineNumber = "221"
+            landmarkName = "-tapAfterPinched:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "matchisimo/CardGameViewController.m"
+            timestampString = "494925269.061616"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "245"
+            endingLineNumber = "245"
+            landmarkName = "-pinch:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "matchisimo/CardGameViewController.m"
+            timestampString = "494925320.423349"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "182"
+            endingLineNumber = "182"
+            landmarkName = "-tapAfterPincghGestureRecoginizer"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

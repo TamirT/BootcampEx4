@@ -7,8 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ShadeInterpreter.h"
 
-@interface SetShade : NSObject <ShadeInterpreter>
+@interface SetShade
 
 @end

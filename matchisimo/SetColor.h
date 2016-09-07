@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ColorInterpreter.h"
+#import <UIKit/UIKit.h>
 
-@interface SetColor : NSObject <ColorInterpreter>
+@interface SetColor : NSObject 
 
 + (UIColor *)getUIColor:(NSString *)colorOption;
 
